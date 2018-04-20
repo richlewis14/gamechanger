@@ -1,0 +1,19 @@
+{
+  "name": "gamechanger",
+  "version": "1.0.0",
+  "description": "Gamechanger website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Richard Lewis",
+  "license": "ISC",
+  "engines": {
+    "node": "8.1.4"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "ejs": "^2.5.9",
+    "express": "^4.16.3"
+  }
+}
