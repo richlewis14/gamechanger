@@ -9,6 +9,15 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var port = process.env.PORT || 4000;
 
+// Redirect all HTTP traffic to HTTPS
+function ensureSecure(req, res, next){
+  if(req.headers["x-forwarded-proto"] === "https"){
+    // OK, continue
+    return next();
+  };
+  res.redirect('https://'+req.hostname+req.url); // handle port numbers if you need non defaults
+};
+
 app.use(express.static('public'))
 
 // set the view engine to ejs
@@ -32,6 +41,10 @@ app.use(function(req, res, next) {
   res.header("X-Frame-Options", "DENY");
   next();
 });
+
+if(process.env.NODE_ENV == 'production') {
+  app.all('*', ensureSecure);
+}
 
 app.get('/', function (req, res) {
   res.render('home');
