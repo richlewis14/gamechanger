@@ -40,6 +40,7 @@ app.use(function(req, res, next) {
   res.header("X-Content-Type-Options", "nosniff");
   res.header("X-Frame-Options", "DENY");
   res.header("X-XSS-Protection", "mode=block");
+  res.header("Strict-Transport-Security", "max-age=63072000");
   next();
 });
 
